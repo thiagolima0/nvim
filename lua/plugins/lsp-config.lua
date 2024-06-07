@@ -12,6 +12,11 @@ return {
     opts = {
       auto_install = true,
     },
+    config = function()
+    require("mason-lspconfig").setup({
+        ensure_installed = {"tsserver", "lua_ls", "tailwindcss"}
+      })
+    end
   },
   {
     "neovim/nvim-lspconfig",
@@ -32,6 +37,8 @@ return {
       lspconfig.lua_ls.setup({
         capabilities = capabilities
       })
+
+      lspconfig.tailwindcss.setup({})
 
       vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
       vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
